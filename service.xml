@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+
+      <menuitem name="Service Center" sequence="2" id="service_center"/>
+
+      <record model="ir.ui.view" id="service_view_form">
+          <field name="model">service.service</field>
+          <field name="type">form</field>
+          <field name="name">service_form</field>
+      </record>
+      <record model="ir.ui.view" id="service_view_tree">
+          <field name="model">service.service</field>
+          <field name="type">tree</field>
+          <field name="name">service_tree</field>
+      </record>
+
+      <record model="ir.action.act_window" id="act_service_form">
+          <field name="name">Service Center</field>
+          <field name="res_model">service.service</field>
+      </record>
+      <record model="ir.action.act_window.view" id="act_service_form_view1">
+          <field name="sequence" eval="10"/>
+          <field name="view" ref="service_view_tree"/>
+          <field name="act_window" ref="act_service_form"/>
+      </record>
+
+        <record model="ir.action.act_window.view" id="act_service_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="service_view_form"/>
+            <field name="act_window" ref="act_service_form"/>
+        </record>
+
+        <record model="ir.action.act_window" id="act_service_out_form">
+            <field name="name">Technical Service</field>
+            <field name="res_model">service.service</field>
+            <field name="domain">[('type', '=', 'service')]</field>
+            <field name="context">{'type': 'service'}</field>
+            <field name="search_value"></field>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_service_out_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="service_view_tree"/>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_service_out_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="service_view_form"/>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_draft">
+            <field name="name">Pending</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('state', '=', 'pending')]</field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_review">
+            <field name="name">In review</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('state', '=', 'review')]</field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_entry_warranty">
+            <field name="name">Entry Warranty</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain">[('garanty', '=', True), ('state', '!=', 'delivered')]</field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_without">
+            <field name="name">Without Solution</field>
+            <field name="sequence" eval="40"/>
+            <field name="domain">[('state', '=', 'without')]</field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_warranty">
+            <field name="name">Warranty not cover</field>
+            <field name="sequence" eval="50"/>
+            <field name="domain">[('state', '=', 'warranty')]</field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_ready">
+            <field name="name">Ready</field>
+            <field name="sequence" eval="60"/>
+            <field name="domain">[('state', '=', 'ready')]</field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_delivered">
+            <field name="name">Delivered</field>
+            <field name="sequence" eval="70"/>
+            <field name="domain">[('state', '=', 'delivered')]</field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_service_domain_all">
+            <field name="name">All</field>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_service_out_form"/>
+        </record>
+        <menuitem parent="service_center" action="act_service_out_form"
+            id="menu_service_form" sequence="1"/>
+
+        <!--Home service-->
+        <record model="ir.action.act_window" id="act_home_service_form">
+            <field name="name">Home Technical Service</field>
+            <field name="res_model">service.service</field>
+            <field name="domain">[('type', '=', 'home_service')]</field>
+            <field name="context">{'type': 'home_service'}</field>
+            <field name="search_value"></field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_home_service_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="service_view_tree"/>
+            <field name="act_window" ref="act_home_service_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_home_service_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="service_view_form"/>
+            <field name="act_window" ref="act_home_service_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_home_service_domain_draft">
+            <field name="name">Pending</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('state', '=', 'pending')]</field>
+            <field name="act_window" ref="act_home_service_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_home_service_domain_ready">
+            <field name="name">Ready</field>
+            <field name="sequence" eval="60"/>
+            <field name="domain">[('state', '=', 'ready')]</field>
+            <field name="act_window" ref="act_home_service_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_home_service_domain_all">
+            <field name="name">All</field>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_home_service_form"/>
+        </record>
+        <menuitem parent="service_center" action="act_home_service_form"
+            id="menu_home_service_form" sequence="2"/>
+
+        <!--Lines-->
+        <record model="ir.ui.view" id="service_line_view_form">
+            <field name="model">service.service.line</field>
+            <field name="type">form</field>
+            <field name="name">service_line_form</field>
+        </record>
+        <record model="ir.ui.view" id="service_line_view_tree">
+            <field name="model">service.service.line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="10"/>
+            <field name="name">service_line_tree</field>
+        </record>
+
+        <record model="ir.ui.view" id="service_line_view_tree_sequence">
+            <field name="model">service.service.line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="20"/>
+            <field name="name">service_line_tree_sequence</field>
+        </record>
+
+        <!--History Lines-->
+        <record model="ir.ui.view" id="service_history_lines_view_form">
+            <field name="model">service.service.history_lines</field>
+            <field name="type">form</field>
+            <field name="name">service_history_lines_form</field>
+        </record>
+        <record model="ir.ui.view" id="service_history_lines_view_tree">
+            <field name="model">service.service.history_lines</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="10"/>
+            <field name="name">service_history_lines_tree</field>
+        </record>
+
+        <record model="ir.ui.view" id="service_history_lines_view_tree_sequence">
+            <field name="model">service.service.history_lines</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="20"/>
+            <field name="name">service_history_lines_tree_sequence</field>
+        </record>
+    <!--Report -->
+        <record model="ir.action.report" id="report_service">
+            <field name="name">Imprimir comprobante</field>
+            <field name="model">service.service</field>
+            <field name="report_name">service.service</field>
+            <field name="report">nodux_technical_service/service.odt</field>
+            <field name="style"></field>
+        </record>
+
+        <record model="ir.action.keyword" id="report_service_keyword">
+            <field name="keyword">form_print</field>
+            <field name="model">service.service,-1</field>
+            <field name="action" ref="report_service"/>
+        </record>
+    <!--Sequence -->
+      <record id="seq_type_service" model="ir.sequence.type">
+          <field name="name">Technical Service</field>
+          <field name="code">service.service</field>
+      </record>
+
+      <record model="ir.sequence.type-res.group"
+          id="sequence_type_service_group_admin">
+          <field name="sequence_type" ref="seq_type_service"/>
+          <field name="group" ref="res.group_admin"/>
+      </record>
+      <record model="ir.sequence.type-res.group"
+          id="sequence_type_service_group_account_admin">
+          <field name="sequence_type" ref="seq_type_service"/>
+          <field name="group" ref="account.group_account_admin"/>
+      </record>
+
+    <!--Periferic -->
+    <record model="ir.ui.view" id="product_periferic_view_form">
+        <field name="model">service.periferic</field>
+        <field name="type">form</field>
+        <field name="name">product_periferic_form</field>
+    </record>
+
+    <record model="ir.ui.view" id="product_periferic_view_list">
+        <field name="model">service.periferic</field>
+        <field name="type">tree</field>
+        <field name="name">product_periferic_list</field>
+    </record>
+
+    <record model="ir.action.act_window" id="act_product_periferic">
+        <field name="name">Periferics</field>
+        <field name="res_model">service.periferic</field>
+    </record>
+    <record model="ir.action.act_window.view" id="act_product_periferic_view1">
+        <field name="sequence" eval="10"/>
+        <field name="view" ref="product_periferic_view_list"/>
+        <field name="act_window" ref="act_product_periferic"/>
+    </record>
+    <record model="ir.action.act_window.view" id="act_product_periferic_view2">
+        <field name="sequence" eval="20"/>
+        <field name="view" ref="product_periferic_view_form"/>
+        <field name="act_window" ref="act_product_periferic"/>
+    </record>
+
+    <record model="ir.model.access" id="access_product_periferic">
+        <field name="model" search="[('model', '=', 'service.periferic')]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_delete" eval="False"/>
+    </record>
+    <record model="ir.model.access" id="access_product_periferic_admin">
+        <field name="model" search="[('model', '=', 'service.periferic')]"/>
+        <field name="group" ref="product.group_product_admin"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_delete" eval="True"/>
+    </record>
+
+    <menuitem action="act_product_periferic" id="menu_product_periferic"
+        parent="service_center" sequence="50"/>
+    </data>
+
+    <!-- Service2Draft -->
+    <record model="ir.ui.view" id="draft_service_start_view_form">
+        <field name="model">service.draft_service.start</field>
+        <field name="type">form</field>
+        <field name="name">draft_service_start_form</field>
+    </record>
+
+    <record model="ir.action.wizard" id="wizard_draft_service">
+        <field name="name">Reverse Service</field>
+        <field name="wiz_name">service.draft_service</field>
+        <field name="model">service.service</field>
+    </record>
+
+    <record model="ir.action.keyword" id="act_wizard_draft_service_keyword">
+        <field name="keyword">form_action</field>
+        <field name="model">service.service,-1</field>
+        <field name="action" ref="wizard_draft_service"/>
+    </record>
+
+    <!-- Group  -->
+    <record model="res.group" id="group_service_reverse">
+        <field name="name">Nodux - Reversar Servicio</field>
+    </record>
+    <record model="res.user-res.group"
+        id="user_admin_group_sale_return">
+        <field name="user" ref="res.user_admin"/>
+        <field name="group" ref="group_service_reverse"/>
+    </record>
+    <record model="res.user-res.group"
+        id="user_trigger_group_sale_return">
+        <field name="user" ref="res.user_admin"/>
+        <field name="group" ref="group_service_reverse"/>
+    </record>
+</tryton>
