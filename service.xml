@@ -36,8 +36,7 @@ this repository contains the full copyright notices and license terms. -->
         <record model="ir.action.act_window" id="act_service_out_form">
             <field name="name">Technical Service</field>
             <field name="res_model">service.service</field>
-            <field name="domain">[('type', '=', 'service')]</field>
-            <field name="context">{'type': 'service'}</field>
+            <field name="domain" eval="[('type', '=', 'service')]" pyson="1"/>
             <field name="search_value"></field>
         </record>
 
@@ -54,43 +53,43 @@ this repository contains the full copyright notices and license terms. -->
         <record model="ir.action.act_window.domain" id="act_service_domain_draft">
             <field name="name">Pending</field>
             <field name="sequence" eval="10"/>
-            <field name="domain">[('state', '=', 'pending')]</field>
+            <field name="domain" eval="[('state', '=', 'pending')]" pyson="1"/>
             <field name="act_window" ref="act_service_out_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_service_domain_review">
             <field name="name">In review</field>
             <field name="sequence" eval="20"/>
-            <field name="domain">[('state', '=', 'review')]</field>
+            <field name="domain" eval="[('state', '=', 'review')]" pyson="1"/>
             <field name="act_window" ref="act_service_out_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_service_domain_entry_warranty">
             <field name="name">Entry Warranty</field>
             <field name="sequence" eval="30"/>
-            <field name="domain">[('garanty', '=', True), ('state', '!=', 'delivered')]</field>
+            <field name="domain" eval="[('garanty', '=', True), ('state', '!=', 'delivered')]" pyson="1"/>
             <field name="act_window" ref="act_service_out_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_service_domain_without">
             <field name="name">Without Solution</field>
             <field name="sequence" eval="40"/>
-            <field name="domain">[('state', '=', 'without')]</field>
+            <field name="domain" eval="[('state', '=', 'without')]" pyson="1"/>
             <field name="act_window" ref="act_service_out_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_service_domain_warranty">
             <field name="name">Warranty not cover</field>
             <field name="sequence" eval="50"/>
-            <field name="domain">[('state', '=', 'warranty')]</field>
+            <field name="domain" eval="[('state', '=', 'warranty')]" pyson="1"/>
             <field name="act_window" ref="act_service_out_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_service_domain_ready">
             <field name="name">Ready</field>
             <field name="sequence" eval="60"/>
-            <field name="domain">[('state', '=', 'ready')]</field>
+            <field name="domain" eval="[('state', '=', 'ready')]" pyson="1"/>
             <field name="act_window" ref="act_service_out_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_service_domain_delivered">
             <field name="name">Delivered</field>
             <field name="sequence" eval="70"/>
-            <field name="domain">[('state', '=', 'delivered')]</field>
+            <field name="domain" eval="[('state', '=', 'delivered')]" pyson="1"/>
             <field name="act_window" ref="act_service_out_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_service_domain_all">
@@ -106,8 +105,7 @@ this repository contains the full copyright notices and license terms. -->
         <record model="ir.action.act_window" id="act_home_service_form">
             <field name="name">Home Technical Service</field>
             <field name="res_model">service.service</field>
-            <field name="domain">[('type', '=', 'home_service')]</field>
-            <field name="context">{'type': 'home_service'}</field>
+            <field name="domain" eval="[('type', '=', 'home_service')]" pyson="1"/>
             <field name="search_value"></field>
         </record>
         <record model="ir.action.act_window.view" id="act_home_service_form_view1">
@@ -123,13 +121,13 @@ this repository contains the full copyright notices and license terms. -->
         <record model="ir.action.act_window.domain" id="act_home_service_domain_draft">
             <field name="name">Pending</field>
             <field name="sequence" eval="10"/>
-            <field name="domain">[('state', '=', 'pending')]</field>
+            <field name="domain" eval="[('state', '=', 'pending')]" pyson="1"/>
             <field name="act_window" ref="act_home_service_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_home_service_domain_ready">
             <field name="name">Ready</field>
             <field name="sequence" eval="60"/>
-            <field name="domain">[('state', '=', 'ready')]</field>
+            <field name="domain" eval="[('state', '=', 'ready')]" pyson="1"/>
             <field name="act_window" ref="act_home_service_form"/>
         </record>
         <record model="ir.action.act_window.domain" id="act_home_service_domain_all">
@@ -186,7 +184,6 @@ this repository contains the full copyright notices and license terms. -->
             <field name="model">service.service</field>
             <field name="report_name">service.service</field>
             <field name="report">nodux_technical_service/service.odt</field>
-            <field name="style"></field>
         </record>
 
         <record model="ir.action.keyword" id="report_service_keyword">

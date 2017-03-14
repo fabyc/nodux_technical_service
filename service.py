@@ -4,7 +4,7 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from decimal import Decimal
-import datetime
+from datetime import datetime, timedelta
 from trytond.model import ModelSQL, Workflow, fields, ModelView
 from trytond.pool import PoolMeta, Pool
 from trytond.transaction import Transaction
@@ -60,8 +60,9 @@ class Periferic(ModelSQL, ModelView):
     @classmethod
     def __register__(cls, module_name):
         TableHandler = backend.get('TableHandler')
-        cursor = Transaction().cursor
-        table = TableHandler(cursor, cls, module_name)
+        transaction = Transaction()
+        cursor = transaction.connection.cursor()
+        table = TableHandler(cls, module_name)
 
         super(Periferic, cls).__register__(module_name)
 
@@ -222,64 +223,57 @@ class Service(Workflow, ModelSQL, ModelView):
 
     @fields.depends('invoice_date', 'garanty')
     def on_change_invoice_date(self):
-        res = {}
         Date = Pool().get('ir.date')
         if self.garanty != None:
-            year = Date.today()- datetime.timedelta(days=365)
+            year = Date.today()- timedelta(days=365)
             if self.invoice_date < year:
-                res['invoice_date'] =  self.invoice_date
+                self.invoice_date =  self.invoice_date
                 self.raise_user_error(u'Está seguro de la fecha de ingreso: "%s"'
                     u'tiene mas de un año de garantia', (self.invoice_date))
         else:
-            res['invoice_date'] =  self.invoice_date
+            self.invoice_date =  self.invoice_date
 
-        return res
 
     @fields.depends('party')
     def on_change_party(self):
-        res = {}
         if self.party:
             if self.party.addresses[0]:
-                res['direccion'] = self.party.addresses[0].street
+                self.direccion = self.party.addresses[0].street
             else:
-                res['direccion'] = ""
+                self.direccion = ""
             if self.party.phone:
-                res['telefono'] = self.party.phone
+                self.telefono = self.party.phone
             elif self.party.mobile:
-                res['telefono'] = self.party.mobile
+                self.telefono = self.party.mobile
             else:
-                res['telefono'] = ""
+                self.telefono = ""
             if self.party.email:
-                res['correo'] = self.party.email
+                self.correo = self.party.email
             else:
-                res['correo'] = ""
+                self.correo = ""
         else:
-            res['direccion'] = ""
-            res['telefono'] = ""
-            res['correo'] = ""
-
-        return res
+            self.direccion = ""
+            self.telefono = ""
+            self.correo = ""
 
     @fields.depends('lines')
     def on_change_lines(self):
-        res= {}
         if self.lines:
             for line in self.lines:
                 if line.product:
-                    res['equipo'] = line.periferic.name
+                    self.equipo = line.periferic.name
                 else:
-                    res['equipo'] = ""
+                    self.equipo = ""
 
                 if line.trademark:
-                    res['marca'] = line.trademark.name
+                    self.marca = line.trademark.name
                 else:
-                    res['marca'] = ""
+                    self.marca = ""
 
                 if line.model:
-                    res['modelo'] = line.model
+                    self.modelo = line.model
                 else:
-                    res['modelo'] = ""
-        return res
+                    self.modelo = ""
 
     @classmethod
     def get_state_date(cls, services, names):
@@ -313,7 +307,7 @@ class Service(Workflow, ModelSQL, ModelView):
     @staticmethod
     def default_delivery_date():
         Date = Pool().get('ir.date')
-        return Date.today()+ datetime.timedelta(days=1)
+        return Date.today()+ timedelta(days=1)
 
     @staticmethod
     def default_state():
@@ -347,14 +341,10 @@ class Service(Workflow, ModelSQL, ModelView):
 
     @fields.depends('total', 'total_home_service')
     def on_change_total_home_service(self):
-        res = {}
-
         if self.total_home_service:
-            res['total'] =  self.total_home_service
+            self.total =  self.total_home_service
         else:
-            res['total'] = Decimal(0.0)
-
-        return res
+            self.total = Decimal(0.0)
 
     def set_number(self):
         pool = Pool()
@@ -584,7 +574,6 @@ class ServiceLine(ModelSQL, ModelView):
 
         if not self.product:
             return {}
-        res = {}
 
         context = {}
         party = None
@@ -595,11 +584,9 @@ class ServiceLine(ModelSQL, ModelView):
         currency = company.currency
         if company and currency:
             with Transaction().set_context(date=currency_date):
-                res['reference_amount'] = Currency.compute(
+                self.reference_amount = Currency.compute(
                     company.currency, self.product.list_price,
                     currency, round=False)
-
-        return res
 
     @classmethod
     def check_modify(cls, lines):
@@ -663,7 +650,7 @@ class HistoryLine(ModelSQL, ModelView):
                 })
     @staticmethod
     def default_date():
-        return datetime.datetime.now()
+        return datetime.now()
 
     def hash_password(self, password):
         if not password:
@@ -729,13 +716,12 @@ class HistoryLine(ModelSQL, ModelView):
                     for u in users:
                         value = self.check_password(self.password, u.password_hash)
                         if value == True:
-                            res['user'] = u.name
+                            self.user = u.name
                             break
                 if value == False:
                     self.raise_user_error(u'Contraseña no válida')
         else:
-            res['user'] = user
-        return res
+            self.user = user
 
     @staticmethod
     def default_description():

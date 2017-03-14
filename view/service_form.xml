@@ -72,14 +72,11 @@ this repository contains the full copyright notices and license terms. -->
     <newline/>
 
     <label name="accessories"/>
-    <field name="accessories" colspan="2"
-        spell="Eval('party_lang')"/>
+    <field name="accessories" colspan="2"/>
     <label name="observations"/>
-    <field name="observations" colspan="2"
-        spell="Eval('party_lang')"/>
+    <field name="observations" colspan="2"/>
     <label name="detail"/>
-    <field name="detail" colspan="2"
-        spell="Eval('party_lang')"/>
+    <field name="detail" colspan="2"/>
     <newline/>
     <label name="total"/>
     <field name="total"/>
