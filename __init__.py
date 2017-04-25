@@ -3,6 +3,7 @@
 from trytond.pool import Pool
 from .service import *
 from .account import *
+from .company import *
 
 def register():
     Pool.register(
@@ -13,6 +14,7 @@ def register():
         ServiceLine,
         HistoryLine,
         DraftServiceStart,
+        Company,
         module='nodux_technical_service', type_='model')
     Pool.register(
         ServiceReport,

@@ -76,6 +76,15 @@ msgctxt "field:account.period,service_sequence:"
 msgid "Service Sequence"
 msgstr "Secuencia de Servicio Técnico"
 
+#, fuzzy
+msgctxt "field:company.company,description:"
+msgid "Description"
+msgstr "Descripción"
+
+msgctxt "field:company.company,logo:"
+msgid "Logo de su empresa"
+msgstr ""
+
 msgctxt "field:party.party,type_document:"
 msgid "Type Document"
 msgstr "Tipo de Documento"
@@ -132,6 +141,10 @@ msgctxt "field:service.service,company:"
 msgid "Company"
 msgstr "Empresa"
 
+msgctxt "field:service.service,correo:"
+msgid "Correo Electrónico"
+msgstr ""
+
 msgctxt "field:service.service,create_date:"
 msgid "Create Date"
 msgstr "Fecha de Creación"
@@ -148,9 +161,17 @@ msgctxt "field:service.service,detail:"
 msgid "Repair Detail"
 msgstr "Detalle reparación"
 
+msgctxt "field:service.service,direccion:"
+msgid "Dirección"
+msgstr ""
+
 msgctxt "field:service.service,entry_date:"
 msgid "Entry Date"
 msgstr "Fecha de Ingreso"
+
+msgctxt "field:service.service,equipo:"
+msgid "Equipo"
+msgstr ""
 
 msgctxt "field:service.service,garanty:"
 msgid "Garanty"
@@ -179,6 +200,14 @@ msgstr "Rayado"
 msgctxt "field:service.service,lines:"
 msgid "Lines"
 msgstr "Lineas"
+
+msgctxt "field:service.service,marca:"
+msgid "Marca"
+msgstr ""
+
+msgctxt "field:service.service,modelo:"
+msgid "Modelo"
+msgstr ""
 
 msgctxt "field:service.service,new:"
 msgid "New"
@@ -227,6 +256,10 @@ msgstr "Estado de fecha"
 msgctxt "field:service.service,technical:"
 msgid "Technical"
 msgstr "Técnico"
+
+msgctxt "field:service.service,telefono:"
+msgid "Teléfono"
+msgstr ""
 
 msgctxt "field:service.service,total:"
 msgid "Total"
@@ -487,7 +520,7 @@ msgstr ""
 
 msgctxt "odt:service.service:"
 msgid ":"
-msgstr ""
+msgstr ":"
 
 msgctxt "odt:service.service:"
 msgid "ACCESORIOS:"
@@ -538,12 +571,6 @@ msgid "ESTADO DEL EQUIPO RECIBIDO"
 msgstr ""
 
 msgctxt "odt:service.service:"
-msgid ""
-"El/los equipo(s) serán entregados únicamente por el Personal de Departamento"
-" Técnico, en nuestro horario de atención"
-msgstr ""
-
-msgctxt "odt:service.service:"
 msgid "F"
 msgstr ""
 
@@ -553,7 +580,7 @@ msgstr ""
 
 msgctxt "odt:service.service:"
 msgid "FECHA"
-msgstr ""
+msgstr "FECHA"
 
 msgctxt "odt:service.service:"
 msgid "FECHA DE"
@@ -568,31 +595,11 @@ msgid "Golpeado"
 msgstr ""
 
 msgctxt "odt:service.service:"
-msgid "HORARIO DE ATENCION:"
-msgstr ""
-
-msgctxt "odt:service.service:"
 msgid "LOCAL:"
 msgstr ""
 
 msgctxt "odt:service.service:"
-msgid ""
-"La empresa entrega al Cliente el equipo con los test de pruebas necesarias, "
-"el Cliente debe retirar todos los accesorios entregados. Una vez que haya "
-"firmado el presente documento la Empresa no aceptará por ningún motivo, "
-"reclamos posteriores."
-msgstr ""
-
-msgctxt "odt:service.service:"
-msgid "Lunes a Viernes MAÑANA: 09H00 a 12H45 TARDE:14H45 a 18H45"
-msgstr ""
-
-msgctxt "odt:service.service:"
 msgid "MARCA"
-msgstr ""
-
-msgctxt "odt:service.service:"
-msgid "MATRIZ (SUCRE Y AZUAY)"
 msgstr ""
 
 msgctxt "odt:service.service:"
@@ -609,26 +616,6 @@ msgstr ""
 
 msgctxt "odt:service.service:"
 msgid "NOMBRES:"
-msgstr ""
-
-msgctxt "odt:service.service:"
-msgid "NOTA IMPORTANTE:"
-msgstr ""
-
-msgctxt "odt:service.service:"
-msgid ""
-"NOTA IMPORTANTE: Estimado cliente, el tiempo máximo para retirar su equipo "
-"es de 2 semanas luego de recibir el diagnóstico, después de ese tiempo se "
-"cobrará bodegaje. Si hasta 2 meses de la fecha de ingreso no es retirado, "
-"éste será desechado y sin lugar a reclamo alguno"
-msgstr ""
-
-msgctxt "odt:service.service:"
-msgid ""
-"NOTA IMPORTANTE: Estimado cliente, el tiempo máximo para retirar su equipo "
-"es de 2 semanas luego de recibir el diagnóstico, después de ese tiempo se "
-"cobrará bodegaje. Si hasta 2 meses de la fecha de ingreso no es retirado, "
-"éste será desechado y sin lugar a reclamo alguno."
 msgstr ""
 
 msgctxt "odt:service.service:"
@@ -672,10 +659,6 @@ msgid "Sistema"
 msgstr ""
 
 msgctxt "odt:service.service:"
-msgid "Sábados: MAÑANA: 09H00 a 12H45"
-msgstr ""
-
-msgctxt "odt:service.service:"
 msgid "TELÉFONO:"
 msgstr ""
 
@@ -705,19 +688,19 @@ msgstr ""
 
 msgctxt "selection:party.party,type_document:"
 msgid "Cedula"
-msgstr ""
+msgstr "Cédula"
 
 msgctxt "selection:party.party,type_document:"
 msgid "Consumidor Final"
-msgstr ""
+msgstr "Consumidor final"
 
 msgctxt "selection:party.party,type_document:"
 msgid "Pasaporte"
-msgstr ""
+msgstr "Pasaporte"
 
 msgctxt "selection:party.party,type_document:"
 msgid "RUC"
-msgstr ""
+msgstr "RUC"
 
 msgctxt "selection:service.service,state:"
 msgid "Delivered"
@@ -750,6 +733,10 @@ msgstr ""
 msgctxt "selection:service.service,type:"
 msgid "Servicio a domicilio"
 msgstr ""
+
+msgctxt "view:company.company:"
+msgid "Technical Service"
+msgstr "Servicio Técnico"
 
 msgctxt "view:party.party:"
 msgid "VAT"
