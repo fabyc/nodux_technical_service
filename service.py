@@ -605,7 +605,7 @@ class ServiceLine(ModelSQL, ModelView):
     def check_modify(cls, lines):
         for line in lines:
             if (line.service
-                    and line.service.state in ('review', 'ready', 'without', 'warranty', 'delivered')):
+                    and line.service.state in ('ready', 'without', 'warranty', 'delivered')):
                 cls.raise_user_error('modify', {
                         'line': line.rec_name,
                         'invoice': line.service.number_service
