@@ -76,10 +76,13 @@ msgctxt "field:account.period,service_sequence:"
 msgid "Service Sequence"
 msgstr "Secuencia de Servicio Técnico"
 
-#, fuzzy
 msgctxt "field:company.company,description:"
 msgid "Description"
 msgstr "Descripción"
+
+msgctxt "field:company.company,description_delivered:"
+msgid "Description Delivered"
+msgstr "Descripción Entrega"
 
 msgctxt "field:company.company,logo:"
 msgid "Logo de su empresa"
@@ -732,6 +735,10 @@ msgstr ""
 
 msgctxt "selection:service.service,type:"
 msgid "Servicio a domicilio"
+msgstr ""
+
+msgctxt "view:company.company:"
+msgid "Logo"
 msgstr ""
 
 msgctxt "view:company.company:"

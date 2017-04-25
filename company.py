@@ -16,4 +16,5 @@ class Company:
     __name__ = 'company.company'
 
     description = fields.Text('Description')
+    description_delivered = fields.Text('Description Delivered')
     logo = fields.Binary('Logo de su empresa')
