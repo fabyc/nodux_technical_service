@@ -8,6 +8,7 @@ this repository contains the full copyright notices and license terms. -->
             <newline/>
             <separator name="description" string="Logo"/>
             <field xfill="0" xexpand="1" name="logo" img_width="80" img_height="80" height="80" width="80" widget="image"/>
+            <field xfill="0" xexpand="1" name="logo1" img_width="80" img_height="80" height="80" width="80" widget="image"/>
             <newline/>
             <separator name="description"/>
             <field name="description"/>

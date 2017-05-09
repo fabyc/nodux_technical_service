@@ -18,3 +18,4 @@ class Company:
     description = fields.Text('Description')
     description_delivered = fields.Text('Description Delivered')
     logo = fields.Binary('Logo de su empresa')
+    logo1 = fields.Binary('Logo adicional')
